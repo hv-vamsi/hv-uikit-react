@@ -1,0 +1,9 @@
+{
+  "name": "@hitachivantara/tsconfig",
+  "description": "NEXT UI typescript configurations.",
+  "private": true,
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

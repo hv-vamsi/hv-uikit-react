@@ -1,0 +1,63 @@
+{
+  "name": "@hitachivantara/uikit-react-core",
+  "version": "0.0.0",
+  "private": false,
+  "description": "NEXT UI core components library.",
+  "author": "Hitachi Vantara UI Kit Team",
+  "homepage": "https://github.com/lumada-design/hv-uikit-react",
+  "keywords": [
+    "hitachi-vantara",
+    "design-system",
+    "ui-kit",
+    "react"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lumada-design/hv-uikit-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lumada-design/hv-uikit-react/issues"
+  },
+  "license": "Apache-2.0",
+  "sideEffects": false,
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.cjs",
+      "import": "./dist/esm/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch --mode dev",
+    "lint": "eslint \"src/**/*.ts*\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "dependencies": {
+    "@hitachivantara/uikit-react-base": "workspace:*",
+    "@hitachivantara/uikit-styles": "workspace:*",
+    "@linaria/core": "^4.5.4",
+    "class-variance-authority": "^0.7.0"
+  },
+  "devDependencies": {
+    "@hitachivantara/eslint-config": "workspace:*",
+    "@hitachivantara/tsconfig": "workspace:*",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "eslint": "^8.48.0",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
