@@ -30,7 +30,7 @@ import { HvTypography } from "@core/components/Typography";
 import { HvActionBar } from "@core/components/ActionBar";
 import { HvButton } from "@core/components/Button";
 
-import { getDateLabel } from "./utils";
+import { getDateLabel, isSameDate } from "./utils";
 import useVisibleDate from "./useVisibleDate";
 import { staticClasses, useClasses } from "./DatePicker.styles";
 
@@ -223,10 +223,10 @@ export const HvDatePicker = forwardRef<HTMLDivElement, HvDatePickerProps>(
       Boolean(defaultExpanded)
     );
 
-    const [startDate, setStartDate, rollbackStartDate] = useSavedState(
-      rangeMode ? startValue : value
-    );
-    const [endDate, setEndDate, rollbackEndDate] = useSavedState(endValue);
+    const [startDate, setStartDate, rollbackStartDate, savedStartDate] =
+      useSavedState(rangeMode ? startValue : value);
+    const [endDate, setEndDate, rollbackEndDate, savedEndDate] =
+      useSavedState(endValue);
 
     const [visibleDate, dispatchAction] = useVisibleDate(startDate, endDate);
 
@@ -242,6 +242,11 @@ export const HvDatePicker = forwardRef<HTMLDivElement, HvDatePickerProps>(
 
     const endDateIsSet = useRef(false);
     endDateIsSet.current = endDate != null;
+
+    const canSave = rangeMode
+      ? isSameDate(startDate, savedStartDate) &&
+        isSameDate(endDate, savedEndDate)
+      : isSameDate(startDate, savedStartDate);
 
     useEffect(() => {
       if (startDate != null) {
@@ -394,7 +399,7 @@ export const HvDatePicker = forwardRef<HTMLDivElement, HvDatePickerProps>(
      * Renders the container for the action elements.
      */
     const renderActions = () => (
-      <HvActionBar className={cx({ [classes.actionContainer]: showClear })}>
+      <HvActionBar className={classes.actionContainer}>
         {showClear && (
           <div className={classes.leftContainer}>
             <HvButton
@@ -407,11 +412,13 @@ export const HvDatePicker = forwardRef<HTMLDivElement, HvDatePickerProps>(
             </HvButton>
           </div>
         )}
+        <div aria-hidden style={{ flex: 1 }} />
         <div className={classes.rightContainer}>
           <HvButton
             id={setId(id, "action", "apply")}
             className={classes.action}
-            variant="primaryGhost"
+            disabled={canSave}
+            variant="primarySubtle"
             onClick={handleApply}
           >
             {labels?.applyLabel}
@@ -419,7 +426,7 @@ export const HvDatePicker = forwardRef<HTMLDivElement, HvDatePickerProps>(
           <HvButton
             id={setId(id, "action", "cancel")}
             className={classes.action}
-            variant="primaryGhost"
+            variant="secondarySubtle"
             onClick={handleCancel}
           >
             {labels?.cancelLabel}

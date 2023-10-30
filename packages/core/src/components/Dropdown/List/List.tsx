@@ -309,24 +309,22 @@ export const HvDropdownList = (props: HvDropdownListProps) => {
    * Render action buttons.
    */
   const renderActions = () => {
-    const applyLabel = labels?.applyLabel;
-    const cancelLabel = labels?.cancelLabel;
     return (
-      <HvActionBar id={setId(id, "actions")}>
+      <HvActionBar id={setId(id, "actions")} className={classes.actions}>
         <HvButton
           id={setId(id, "actions-apply")}
           disabled={!hasChanges}
           onClick={() => onChange(cleanHidden(list), true, true, true)}
-          variant="primaryGhost"
+          variant="secondaryGhost"
         >
-          {applyLabel}
+          {labels?.applyLabel}
         </HvButton>
         <HvButton
           id={setId(id, "actions-cancel")}
           onClick={onCancel}
-          variant="primaryGhost"
+          variant="secondarySubtle"
         >
-          {cancelLabel}
+          {labels?.cancelLabel}
         </HvButton>
       </HvActionBar>
     );

@@ -9,6 +9,9 @@ export const { staticClasses, useClasses } = createClasses("HvDropdownList", {
   listBorderDown: {},
   listContainer: { padding: theme.space.sm },
   selectAllContainer: {},
+  actions: {
+    gap: theme.space.xs,
+  },
   selection: {},
   selectAll: {},
 });

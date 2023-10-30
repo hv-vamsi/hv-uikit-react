@@ -10,7 +10,9 @@ export const { staticClasses, useClasses } = createClasses("HvDatePicker", {
     justifyContent: "space-between",
   },
   leftContainer: {},
-  rightContainer: {},
+  rightContainer: {
+    gap: theme.space.xs,
+  },
 
   labelContainer: {
     display: "flex",
