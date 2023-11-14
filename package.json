@@ -13,11 +13,12 @@
   },
   "license": "Apache-2.0",
   "scripts": {
-    "dev": "npm run dev -w app",
-    "doc": "storybook dev -p 6006",
+    "dev": "storybook dev -p 6006",
+    "docs": "npm run dev -w apps/docs",
+    "showroom": "npm run dev -w apps/showroom",
     "build": "lerna run build",
-    "build:doc": "storybook build -o dist --quiet && node scripts/storybook-title",
-    "build:app": "vite build app",
+    "build:playground": "storybook build -o dist --quiet && node scripts/storybook-title",
+    "build:showroom": "vite build apps/showroom",
     "test": "lerna run test",
     "test:a11y": "node scripts/a11y-report",
     "test:eyes": "npx eyes-storybook -f .config/applitools.config.js",
@@ -128,6 +129,6 @@
   },
   "workspaces": [
     "packages/*",
-    "app/"
+    "apps/*"
   ]
 }
