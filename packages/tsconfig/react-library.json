@@ -4,8 +4,9 @@
   "extends": "./base.json",
   "compilerOptions": {
     "jsx": "react-jsx",
-    "lib": ["dom", "ES2015"],
+    "jsxImportSource": "@emotion/react",
+    "lib": ["DOM", "ES2021", "dom.iterable"],
     "module": "ESNext",
-    "target": "es6"
+    "target": "ES2021"
   }
 }

@@ -1,0 +1,66 @@
+{
+  "name": "@hitachivantara/uikit-react-code-editor",
+  "version": "5.2.81",
+  "private": false,
+  "description": "UI Kit React Monaco editor.",
+  "author": "Hitachi Vantara UI Kit Team",
+  "homepage": "https://github.com/lumada-design/hv-uikit-react",
+  "keywords": [
+    "hitachi-vantara",
+    "design-system",
+    "ui-kit",
+    "react"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lumada-design/hv-uikit-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lumada-design/hv-uikit-react/issues"
+  },
+  "license": "Apache-2.0",
+  "sideEffects": false,
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.cjs",
+      "import": "./dist/esm/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm run clean && vite build",
+    "clean": "npx rimraf dist",
+    "lint": "eslint \"src/**/*.ts*\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.12.2",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
+  },
+  "dependencies": {
+    "@hitachivantara/uikit-react-core": "workspace:*",
+    "@hitachivantara/uikit-react-icons": "workspace:*",
+    "@hitachivantara/uikit-styles": "workspace:*",
+    "@monaco-editor/react": "^4.6.0"
+  },
+  "devDependencies": {
+    "@emotion/css": "^11.11.0",
+    "@hitachivantara/eslint-config": "workspace:*",
+    "@hitachivantara/tsconfig": "workspace:*",
+    "@storybook/react": "^7.5.3",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "vite": "^4.5.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

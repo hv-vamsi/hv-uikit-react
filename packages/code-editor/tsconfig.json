@@ -1,0 +1,9 @@
+{
+  "extends": "@hitachivantara/tsconfig/react-library.json",
+  "compilerOptions": {
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+  },
+  "exclude": ["vite.config.ts", "dist", "node_modules"]
+}

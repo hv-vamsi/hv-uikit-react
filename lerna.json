@@ -7,7 +7,7 @@
       "npmClientArgs": ["--legacy-peer-deps", "--production=false"]
     },
     "version": {
-      "allowBranch": ["main", "next*", "feat/*", "fix/*", "bug/*"],
+      "allowBranch": ["master", "next*", "feat/*", "fix/*", "bug/*"],
       "message": "chore(release): publish",
       "conventionalCommits": true,
       "createRelease": "github",

@@ -1,0 +1,68 @@
+name: Artifacts
+description: Deploy UI Kit Artifact
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set Deployment Ref
+      shell: bash
+      run: |
+        if [ "${{ github.event.number }}" ]; then
+          echo "DEPLOYMENT_REF=refs/pull/${{ github.event.number }}/head" >> $GITHUB_ENV
+        else
+          echo "DEPLOYMENT_REF=${{ github.ref }}" >> $GITHUB_ENV
+        fi
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Start Deployment
+      uses: bobheadxi/deployments@v1
+      id: deployment
+      with:
+        step: start
+        token: ${{ env.GITHUB_TOKEN }}
+        env: ${{ env.PUBLISH_FOLDER }}
+        ref: ${{ env.DEPLOYMENT_REF }}
+        desc: ${{ env.PUBLISH_MESSAGE }}
+
+    - name: Checkout Artifacts Repository
+      uses: actions/checkout@v3
+      with:
+        repository: ${{ env.PUBLISH_REPO }}
+        ref: master
+        token: ${{ env.ORG_GHPAGES_DEPLOY_KEY }}
+        path: gh-docs
+        fetch-depth: 1
+
+    - name: Remove Previous Artifact
+      run: rm -rf ${{ github.workspace }}/gh-docs/${PUBLISH_FOLDER}/*
+      shell: bash
+
+    - name: Fetch Artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: ${{ env.ARTIFACT }}
+        path: ${{ github.workspace }}/gh-docs/${{env.PUBLISH_FOLDER}}
+
+    - name: Push Artifact
+      run: |
+        cd ${{ github.workspace }}/gh-docs
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git pull
+        git add -A ${PUBLISH_FOLDER}
+        git commit -m "${PUBLISH_MESSAGE}"
+        git push
+      shell: bash
+
+    - name: Update Deployment Status
+      uses: bobheadxi/deployments@v1
+      if: always()
+      with:
+        step: finish
+        token: ${{ env.GITHUB_TOKEN }}
+        env: ${{env.PUBLISH_FOLDER}}
+        status: ${{ job.status }}
+        deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+        env_url: ${{env.URL}}

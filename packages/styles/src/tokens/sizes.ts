@@ -5,3 +5,5 @@ export const sizes = {
   lg: "40px",
   xl: "44px",
 };
+
+export type HvSize = keyof typeof sizes;

@@ -1,14 +1,58 @@
 import {
   DeepString,
-  Theme,
-  ThemeVars,
-  ThemeTypography,
-  ThemeTypographyProps,
+  HvTheme,
+  HvThemeComponents,
+  HvThemeTypography,
+  HvThemeVars,
+  HvThemeTypographyProps,
+  HvThemeUtils,
 } from "./types";
 import * as tokens from "./tokens";
-import { mapToCSSVars } from "./utils";
+import type { HvColorAny } from "./tokens";
+import {
+  hasMultipleArgs,
+  mapCSSVars,
+  spacingUtil,
+  spacingUtilOld,
+} from "./utils";
 
-const typographyProps: DeepString<ThemeTypographyProps> = {
+const componentsSpec: DeepString<HvThemeComponents> = {
+  header: {
+    height: "string",
+    secondLevelHeight: "string",
+  },
+  bulkActions: {
+    actionButtonVariant: "string",
+  },
+  table: {
+    rowStripedBackgroundColorEven: "string",
+    rowStripedBackgroundColorOdd: "string",
+    rowExpandBackgroundColor: "string",
+    rowSortedColor: "string",
+    rowSortedColorAlpha: "string",
+  },
+  stepNavigation: {
+    separatorMargin: "string",
+    defaultSeparatorHeight: "string",
+    simpleSeparatorHeight: "string",
+  },
+  filterGroup: {
+    applyButtonVariant: "string",
+    cancelButtonVariant: "string",
+  },
+  scrollTo: {
+    dotSelectedSize: "string",
+    backgroundColorOpacity: "string",
+  },
+  colorPicker: {
+    hueDirection: "string",
+  },
+  snackbar: {
+    actionButtonVariant: "string",
+  },
+};
+
+const typographyProps: DeepString<HvThemeTypographyProps> = {
   color: "string",
   fontSize: "string",
   letterSpacing: "string",
@@ -17,7 +61,7 @@ const typographyProps: DeepString<ThemeTypographyProps> = {
   textDecoration: "string",
 };
 
-const typographySpec: DeepString<ThemeTypography> = {
+const typographySpec: DeepString<HvThemeTypography> = {
   typography: {
     // DS5
     display: { ...typographyProps },
@@ -29,47 +73,68 @@ const typographySpec: DeepString<ThemeTypography> = {
     body: { ...typographyProps },
     caption1: { ...typographyProps },
     caption2: { ...typographyProps },
+    // LEGACY UNMAPPABLE (DS3)
+    "5xlTitle": { ...typographyProps },
+    "4xlTitle": { ...typographyProps },
+    xxlTitle: { ...typographyProps },
+    lTitle: { ...typographyProps },
+    sTitle: { ...typographyProps },
+    xxsTitle: { ...typographyProps },
+    sectionTitle: { ...typographyProps },
+    placeholderText: { ...typographyProps },
+    link: { ...typographyProps },
+    disabledText: { ...typographyProps },
+    selectedNavText: { ...typographyProps },
+    vizTextDisabled: { ...typographyProps },
+    xsInlineLink: { ...typographyProps },
   },
 };
 
-const themeVars: ThemeVars = mapToCSSVars({
+const themeVars: HvThemeVars = mapCSSVars({
   ...tokens,
   colors: {
-    scheme: "light",
-    background: tokens.colors.light.atmo2,
+    type: "light",
+    containerBackgroundHover: tokens.colors.light.primary_20,
+    backgroundColor: tokens.colors.light.atmo2,
     ...tokens.colors.common,
     ...tokens.colors.light,
-  },
+  }, // Flatten colors and add background color
+  ...componentsSpec,
   ...typographySpec,
 });
 
-const spacing = (value: string | number | (string | number)[]): string => {
+const spacing: HvThemeUtils["spacing"] = (...args) => {
+  if (hasMultipleArgs(args)) {
+    return args.map((arg) => spacingUtil(arg, themeVars)).join(" ");
+  }
+
+  const [value] = args;
+
   switch (typeof value) {
     case "number":
-      return `calc(${themeVars.space.base} * ${value}px)`;
     case "string":
-      return themeVars.space[value] || value;
+      return spacingUtil(value, themeVars);
+    // TODO: remove in v6
     case "object":
       return value && value.length > 0
-        ? value
-            .map((x) => {
-              switch (typeof x) {
-                case "number":
-                  return `${x}px`;
-                case "string":
-                  return themeVars.space[x] || x;
-                default:
-                  return "0px";
-              }
-            })
-            .join(" ")
+        ? value.map((val) => spacingUtilOld(val, themeVars)).join(" ")
         : "0px";
     default:
       return "0px";
   }
 };
 
-export const theme: Theme = {
+export const theme: HvTheme = {
   ...themeVars,
   spacing,
 };
+
+const getColorOrFallback = (color: HvColorAny | undefined) => {
+  return (color && (theme.colors[color] as string)) || color;
+};
+
+/** Get a `color` from the theme palette, or `fallbackColor` if not found */
+export const getColor = (
+  color: HvColorAny | undefined,
+  fallbackColor?: HvColorAny
+) => getColorOrFallback(color) || getColorOrFallback(fallbackColor);

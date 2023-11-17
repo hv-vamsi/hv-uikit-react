@@ -1,0 +1,55 @@
+{
+  "name": "@hitachivantara/uikit-react-shared",
+  "version": "5.1.17",
+  "private": false,
+  "description": "UI Kit Shared React contexts.",
+  "author": "Hitachi Vantara UI Kit Team",
+  "homepage": "https://github.com/lumada-design/hv-uikit-react",
+  "keywords": [
+    "hitachi-vantara",
+    "design-system",
+    "ui-kit"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lumada-design/hv-uikit-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lumada-design/hv-uikit-react/issues"
+  },
+  "license": "Apache-2.0",
+  "sideEffects": false,
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.cjs",
+      "import": "./dist/esm/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm run clean && vite build",
+    "clean": "npx rimraf dist",
+    "lint": "eslint \"src/**/*.ts*\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
+  },
+  "dependencies": {
+    "@emotion/cache": "^11.11.0",
+    "@hitachivantara/uikit-styles": "workspace:*",
+    "vite": "^4.5.0"
+  },
+  "devDependencies": {
+    "@hitachivantara/tsconfig": "workspace:*"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

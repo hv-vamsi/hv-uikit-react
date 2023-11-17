@@ -1,0 +1,50 @@
+{
+  "name": "uikit-app",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "check": "tsc --noEmit",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/css": "^11.11.0",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@hitachivantara/uikit-react-code-editor": "*",
+    "@hitachivantara/uikit-react-core": "*",
+    "@hitachivantara/uikit-react-icons": "*",
+    "@hitachivantara/uikit-react-lab": "*",
+    "@hitachivantara/uikit-react-viz": "*",
+    "@hitachivantara/uikit-styles": "*",
+    "@mui/material": "^5.13.5",
+    "@types/react-grid-layout": "^1.3.4",
+    "arquero": "^5.2.0",
+    "clsx": "^1.2.1",
+    "formik": "^2.4.2",
+    "i18next": "^22.5.1",
+    "i18next-browser-languagedetector": "^7.0.2",
+    "i18next-http-backend": "^2.2.1",
+    "js-cookie": "^3.0.5",
+    "json5": "^2.2.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-google-charts": "^4.0.0",
+    "react-grid-layout": "^1.4.2",
+    "react-i18next": "^12.3.1",
+    "react-router-dom": "^6.13.0",
+    "reactflow": "^11.9.4",
+    "swr": "^2.2.2",
+    "yup": "^1.2.0"
+  },
+  "devDependencies": {
+    "@emotion/babel-plugin": "^11.11.0",
+    "@types/lodash": "^4.14.195",
+    "@types/react": "^18.2.12",
+    "@types/react-dom": "^18.2.5",
+    "@vitejs/plugin-react": "^3.1.0",
+    "typescript": "^4.9.5",
+    "vite": "^4.3.9",
+    "vite-tsconfig-paths": "^4.2.0"
+  }
+}

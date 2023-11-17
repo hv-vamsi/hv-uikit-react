@@ -1,6 +1,6 @@
 # @hitachivantara/uikit-styles
 
-NEXT UI styling solution.
+UI Kit styling solution for the Next Design System.
 
 ## Installation
 

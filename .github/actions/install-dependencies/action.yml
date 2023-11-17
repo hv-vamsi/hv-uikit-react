@@ -1,0 +1,20 @@
+name: Dependencies
+description: Install UI Kit dependencies
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install dependencies
+      env:
+        # ensure dev dependencies are installed
+        NODE_ENV: development
+      run: npm ci
+      shell: bash

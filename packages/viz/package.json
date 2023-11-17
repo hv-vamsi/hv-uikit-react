@@ -1,0 +1,63 @@
+{
+  "name": "@hitachivantara/uikit-react-viz",
+  "version": "5.6.8",
+  "private": false,
+  "description": "React visualizations for the NEXT UI Kit.",
+  "author": "Hitachi Vantara UI Kit Team",
+  "homepage": "https://github.com/lumada-design/hv-uikit-react",
+  "keywords": [
+    "hitachi-vantara",
+    "design-system",
+    "ui-kit",
+    "react"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lumada-design/hv-uikit-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lumada-design/hv-uikit-react/issues"
+  },
+  "license": "Apache-2.0",
+  "sideEffects": false,
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.cjs",
+      "import": "./dist/esm/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npm run clean && vite build",
+    "clean": "npx rimraf dist",
+    "lint": "eslint \"src/**/*.ts*\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.12.2",
+    "arquero": "^5.2.0",
+    "echarts": "^5.4.2",
+    "echarts-for-react": "^3.0.2",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
+  },
+  "dependencies": {
+    "@emotion/css": "^11.11.0",
+    "@hitachivantara/uikit-react-core": "workspace:*"
+  },
+  "devDependencies": {
+    "@hitachivantara/tsconfig": "workspace:*",
+    "@hitachivantara/uikit-react-icons": "workspace:*",
+    "@storybook/react": "^7.5.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

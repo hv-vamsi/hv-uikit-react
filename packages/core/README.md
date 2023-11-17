@@ -1,11 +1,13 @@
-#@hitachivantara/uikit-react-core
+# @hitachivantara/uikit-react-core
 
-NEXT UI core components library.
+Core React components for the NEXT Design System.
 
 ## Installation
 
-```bash
-pnpm install@hitachivantara/uikit-react-core
+Install the package in your project directory with:
+
+```sh
+npm install @hitachivantara/uikit-react-core
 ```
 
 ## License

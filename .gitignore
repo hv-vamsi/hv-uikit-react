@@ -1,12 +1,46 @@
+# os
 .DS_Store
+
+# editor
+.idea
+.vscode
+.nova
+
+# node
 node_modules
+
+# Logs
+logs
 *.log
-.next
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# env
+.env*
+
+# Build
 dist
-dist-ssr
-*.local
-.env
-.cache
-server/dist
-public/dist
-storybook-static/
+bin
+packages/icons/sprites
+*.tgz
+
+# tests
+coverage
+
+# lint
+.eslintcache
+
+# typescript
+*.tsbuildinfo
+
+# security
+detect.sh
+output
+reports
+dependency-check-bin
+
+# misc
+.next

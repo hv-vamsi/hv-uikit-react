@@ -2,7 +2,7 @@ export const fontFamily = {
   body: "'Open Sans', Arial, Helvetica, sans-serif",
 };
 
-export const fontSize = {
+export const fontSizes = {
   xs: "10px",
   sm: "12px",
   base: "14px",
@@ -13,7 +13,7 @@ export const fontSize = {
   xl4: "42px",
 };
 
-export const fontWeight = {
+export const fontWeights = {
   hairline: "100",
   thin: "200",
   light: "300",
@@ -25,7 +25,7 @@ export const fontWeight = {
   black: "900",
 };
 
-export const lineHeight = {
+export const lineHeights = {
   none: "21px",
   xs: "16px",
   sm: "18px",

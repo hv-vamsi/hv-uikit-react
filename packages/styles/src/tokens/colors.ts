@@ -1,7 +1,9 @@
-const common = {
+const base = {
   base_light: "#FBFCFC",
   base_dark: "#414141",
+};
 
+const categorical = {
   cat1_180: "#2D4B87",
   cat1_160: "#4767A7",
   cat1_140: "#5C7CBB",
@@ -126,6 +128,11 @@ const common = {
   cat26: "#FF5252",
   cat27: "#EC3D57",
   cat28: "#D8265D",
+};
+
+const common = {
+  ...base,
+  ...categorical,
 };
 
 /* -------------------------------------------------------------------------------------------------
@@ -271,3 +278,19 @@ export const colors = {
     ...shadowDark,
   },
 };
+
+export type HvAccentColor = keyof typeof accentLight;
+export type HvAtmosphereColor = keyof typeof atmosphereLight;
+export type HvBaseColor = keyof typeof base;
+export type HvSemanticColor = keyof typeof semanticLight;
+export type HvSupportColor = keyof typeof supportLight;
+export type HvCategoricalColor = keyof typeof categorical;
+
+/** A type with all the accepted colors from the color palette */
+export type HvColor = keyof typeof colors.common | keyof typeof colors.light;
+
+/**
+ * A type representing an `HvColor` from the palette or any other color string
+ * @example "secondary" "brand" "atmo2" "#FF0000" "purple" "inherit"
+ * */
+export type HvColorAny = HvColor | (string & {});

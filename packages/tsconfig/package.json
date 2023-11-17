@@ -2,7 +2,7 @@
   "name": "@hitachivantara/tsconfig",
   "description": "NEXT UI typescript configurations.",
   "private": true,
-  "license": "MIT",
+  "license": "Apache-2.0",
   "publishConfig": {
     "access": "public"
   }

@@ -1,0 +1,4 @@
+{
+  "extends": "@hitachivantara/tsconfig/react-library.json",
+  "exclude": ["dist", "node_modules"]
+}

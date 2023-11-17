@@ -7,18 +7,29 @@
     "declarationMap": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
     "inlineSources": false,
     "isolatedModules": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "preserveWatchOutput": true,
     "skipLibCheck": true,
     "strict": true,
     "strictNullChecks": true,
+    "baseUrl": ".",
     "paths": {
-      "@hitachivantara/*": ["../*/src"]
-    }
+      "~core/*": ["../core/src/*"],
+      "~viz/*": ["../viz/src/*"],
+      "@hitachivantara/uikit-react-core": ["../core/src"],
+      "@hitachivantara/uikit-react-icons": ["../icons/src"],
+      "@hitachivantara/uikit-react-lab": ["../lab/src"],
+      "@hitachivantara/uikit-react-shared": ["../shared/src"],
+      "@hitachivantara/uikit-react-viz": ["../viz/src"],
+      "@hitachivantara/uikit-styles": ["../styles/src"]
+    },
+    "noImplicitAny": false,
+    "preserveSymlinks": true
   },
   "exclude": ["node_modules"]
 }
