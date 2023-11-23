@@ -120,6 +120,7 @@ export const HvDroppableFlow = ({
   children,
   onFlowChange,
   onDndDrop,
+  onInit,
   classes: classesProp,
   nodes: initialNodes = [],
   edges: initialEdges = [],
@@ -242,7 +243,7 @@ export const HvDroppableFlow = ({
     [edges, handleFlowChange, nodes, onEdgesChangeProp]
   );
 
-  const { registry } = useNodeMetaRegistry();
+  const { registry, registerNode, unregisterNode } = useNodeMetaRegistry();
   const isValidConnection = (connection) =>
     validateEdge(nodes, edges, connection, registry);
 
@@ -253,6 +254,10 @@ export const HvDroppableFlow = ({
       width: 20,
     },
     ...defaultEdgeOptionsProp,
+  };
+
+  const customOnInit = (instance) => {
+    onInit?.({ instance, registerNode, unregisterNode });
   };
 
   return (
@@ -272,6 +277,7 @@ export const HvDroppableFlow = ({
           onConnect={handleConnect}
           isValidConnection={isValidConnection}
           defaultEdgeOptions={defaultEdgeOptions}
+          onInit={customOnInit}
           {...others}
         >
           {children}

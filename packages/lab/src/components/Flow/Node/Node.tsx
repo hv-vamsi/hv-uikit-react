@@ -13,7 +13,7 @@ import {
 import { getColor } from "@hitachivantara/uikit-styles";
 import { Down, Info, Up } from "@hitachivantara/uikit-react-icons";
 
-import { useFlowContext, useFlowNode } from "../hooks/index";
+import { useFlowContext, useFlowNode, useFlowNodeMeta } from "../hooks/index";
 import { HvFlowNodeParam } from "../types/index";
 import { staticClasses, useClasses } from "./Node.styles";
 import ParamRenderer from "./Parameters/ParamRenderer";
@@ -75,14 +75,18 @@ export const HvFlowNode = ({
   const [showParams, setShowParams] = useState(expanded);
   const node = useFlowNode(id);
 
+  const meta = useFlowNodeMeta(id);
+
+  console.log("meta", meta);
+
   const { nodeGroups, nodeTypes, defaultActions } = useFlowContext();
   const groupId = nodeTypes?.[type].meta?.groupId;
-  const subtitle = nodeTypes?.[type].meta?.label || nodeDefaults?.subTitle;
+  const subtitle = meta?.label || nodeDefaults?.subTitle;
   const groupLabel =
     (groupId && nodeGroups && nodeGroups[groupId].label) || nodeDefaults?.title;
 
-  const inputs = nodeTypes?.[type]?.meta?.inputs;
-  const outputs = nodeTypes?.[type]?.meta?.outputs;
+  const inputs = meta?.inputs;
+  const outputs = meta?.outputs;
   const icon =
     (groupId && nodeGroups && nodeGroups[groupId].icon) || nodeDefaults?.icon;
   const colorProp =

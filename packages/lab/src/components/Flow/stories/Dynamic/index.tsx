@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { css } from "@emotion/css";
 import {
   HvButton,
@@ -88,6 +88,29 @@ const nodeTypes = Object.fromEntries(
 export const Dynamic = () => {
   const { rootId } = useTheme();
   const [open, setOpen] = useState(false);
+  const [stuff, setStuff] = useState();
+
+  const addInput = useCallback(() => {
+    const nodes = stuff.instance.getNodes();
+    console.log("nodes", nodes);
+    if (!nodes || nodes.length === 0) return;
+
+    const node = nodes[0];
+    stuff.unregisterNode(node.id);
+    stuff.registerNode(node.id, {
+      inputs: [
+        {
+          id: "input",
+          label: "Input",
+          accepts: "string",
+        },
+      ],
+    });
+  }, [stuff]);
+
+  useEffect(() => {
+    console.log("stuff", stuff);
+  }, [stuff]);
 
   return (
     <div className={classes.root}>
@@ -108,6 +131,7 @@ export const Dynamic = () => {
         >
           Add Node
         </HvButton>
+        <HvButton onClick={() => addInput()}>Add Input</HvButton>
       </HvGlobalActions>
       <div className={classes.flow}>
         <HvFlow
@@ -120,6 +144,7 @@ export const Dynamic = () => {
             x: 0,
             y: 0,
           }}
+          onInit={(s) => setStuff(s)}
           sidebar={
             <HvFlowSidebar
               title="Add Node"

@@ -20,10 +20,12 @@ export const HvFlowNodeMetaProvider = ({
   const registryRef = useRef<Record<string, HvFlowNodeMeta>>({});
 
   const registerNode = useCallback((id: string, nodeInfo: HvFlowNodeMeta) => {
+    console.log("registering node", id, nodeInfo);
     registryRef.current[id] = nodeInfo;
   }, []);
 
   const unregisterNode = useCallback((id: string) => {
+    console.log("unregistering node", id);
     delete registryRef.current[id];
   }, []);
 
