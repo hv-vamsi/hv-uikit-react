@@ -71,7 +71,7 @@ export const HvDropDownMenu = (props: HvDropDownMenuProps) => {
     className,
     icon,
     placement = "right",
-    dataList,
+    dataList = [],
     disablePortal = false,
     onToggle,
     onClick,

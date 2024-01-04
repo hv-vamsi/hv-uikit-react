@@ -127,6 +127,7 @@ export const Main: StoryObj<HvButtonProps> = {
       control: { disable: true },
     },
   },
+  render: (args) => <HvButton {...args} />,
 };
 
 export const Variants: StoryFn<HvButtonProps> = () => {
