@@ -18,6 +18,8 @@ module.exports = {
     protocolTimeout: 300000,
   },
 
+  readStoriesTimeout: 20000,
+
   appName: process.env.APPLITOOLS_APP_NAME,
   batchName: process.env.APPLITOOLS_BATCH_ID,
   branchName: process.env.APPLITOOLS_BRANCH_NAME,
