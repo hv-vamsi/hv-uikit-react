@@ -48,5 +48,5 @@ jobs:
           fi
 
       - name: Eyes Storybook
-        run: npm run test:eyes
+        run: npx eyes-storybook --readStoriesTimeout 20000 -f .config/applitools.config.js
         timeout-minutes: 30
