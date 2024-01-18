@@ -32,5 +32,5 @@ module.exports = {
 
   include: ({ kind }) => !isExcludedPath(kind),
 
-  testConcurrency: 30,
+  testConcurrency: 50,
 };
