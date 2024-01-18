@@ -31,9 +31,12 @@ jobs:
         with:
           ref: ${{ inputs.targetBranch }}
 
-
       - name: Install Dependencies
         uses: ./.github/actions/install-dependencies
+
+      - name: Show config
+        run: cat .config/applitools.config.js
+        shell: bash
 
       - name: Set Applitools App Name
         id: set-app-name

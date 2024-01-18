@@ -15,7 +15,6 @@ module.exports = {
   puppeteerOptions: {
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
     ignoreHTTPSErrors: true,
-    protocolTimeout: 300000,
   },
 
   readStoriesTimeout: 20000,
@@ -33,5 +32,5 @@ module.exports = {
 
   include: ({ kind }) => !isExcludedPath(kind),
 
-  testConcurrency: 20,
+  testConcurrency: 10,
 };
